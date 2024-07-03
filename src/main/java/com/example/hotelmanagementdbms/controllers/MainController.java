@@ -1,10 +1,8 @@
 package com.example.hotelmanagementdbms.controllers;
 
-import com.example.hotelmanagementdbms.entities.Customer;
-import com.example.hotelmanagementdbms.entities.User;
-import com.example.hotelmanagementdbms.entities.UserDTO;
-import com.example.hotelmanagementdbms.services.CustomerService;
-import com.example.hotelmanagementdbms.services.UserService;
+import com.example.hotelmanagementdbms.entities.*;
+import com.example.hotelmanagementdbms.services.*;
+
 import java.util.logging.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -29,14 +27,26 @@ public class MainController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoomService roomService;
+
+    @Autowired
+    private PaymentService paymentService;
 
 
 
-    @ResponseBody
-    @GetMapping("/Galvanic/all")
-    public List<Customer> showAllCustoemrs(){
-        return customerService.getAllCustomers();
-    }
+    @Autowired
+    private FormService formService;
+
+
+
+
+
+//    @ResponseBody
+//    @GetMapping("/Galvanic/all")
+//    public List<Customer> showAllCustomers(){
+//        return customerService.getAllCustomers();
+//    }
 
 
     @ResponseBody
@@ -60,9 +70,37 @@ public class MainController {
 
         }
 
+        @ResponseBody
+        @PostMapping("/Galvanic/customers/add")
+
+        public ResponseEntity<String> addNewCustomer(@RequestBody AddCustomerDTO addCustomerDTO){
+
+            if(formService.save(addCustomerDTO)){
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            }
+            else{
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
 
 
+        }
 
+        @ResponseBody
+        @GetMapping("/Galvanic/customers")
+        public List<Customer> getAllCustomers(){
+            return customerService.getAllCustomers();
+        }
 
+    @ResponseBody
+    @GetMapping("/Galvanic/rooms")
+    public List<Room> getAllRooms(){
+        return roomService.getAllRooms();
+    }
+
+    @ResponseBody
+    @GetMapping("/Galvanic/payments")
+    public List<Payment> getAllPayments(){
+        return paymentService.getAllPayments();
+    }
 
 }

@@ -12,4 +12,6 @@ public interface CustomerRepository extends CrudRepository<Customer,Long> {
 
     @Query(value = "select * from Customer ",nativeQuery = true)
     public List<Customer> getAllCustomers();
+
+    public Customer getCustomersByCustomerContact(Long customerContact);
 }

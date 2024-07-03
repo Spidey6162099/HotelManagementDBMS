@@ -12,6 +12,8 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long customerId;
 
+    private String customerName;
+
     @Column(unique = true)
     private Long customerContact;
 
@@ -20,6 +22,9 @@ public class Customer {
 
     @Temporal(TemporalType.DATE)
     private Date exitDate;
+
+
+    private Long roomNum;
 
     private Long customerCost;
 
@@ -61,5 +66,21 @@ public class Customer {
 
     public void setCustomerCost(Long customerCost) {
         this.customerCost = customerCost;
+    }
+
+    public Long getRoomNum() {
+        return roomNum;
+    }
+
+    public void setRoomNum(Long roomNum) {
+        this.roomNum = roomNum;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 }
