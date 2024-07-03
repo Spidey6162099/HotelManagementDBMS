@@ -88,9 +88,24 @@ public class MainController {
         @ResponseBody
         @PostMapping("/Galvanic/customers/delete/{customerid}")
 
-        public ResponseEntity<String> deleteCustomer(@PathVariable Long customerid){
+        public ResponseEntity<String> deleteCustomer(@PathVariable  Long customerid){
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            try {
+                formService.delete(customerid);
+
+
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            catch(Exception e){
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        }
+
+        @ResponseBody
+        @PostMapping("/Galvanic/customers/update")
+
+        public ResponseEntity<String> updateCustomer(@RequestBody AddCustomerDTO addCustomerDTO){
+        return new ResponseEntity<>(HttpStatus.OK);
         }
 
         @ResponseBody
