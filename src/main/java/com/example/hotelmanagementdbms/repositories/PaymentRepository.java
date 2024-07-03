@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface PaymentRepository extends CrudRepository<Payment,Long> {
-    @Query(value = "select * from Customer ")
+    @Query(value = "select * from Payment ",nativeQuery = true)
     public List<Payment> getAllPayments();
+
+    public Payment getPaymentByCustomerId(Long customerId);
 }

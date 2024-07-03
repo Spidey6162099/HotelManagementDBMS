@@ -11,4 +11,6 @@ import java.util.List;
 public interface RoomRepository extends CrudRepository<Room,Long> {
     @Query(value = "select * from Room ",nativeQuery = true)
     public List<Room> getAllRooms();
+
+    public Room getRoomByRoomNum(Long roomNum);
 }

@@ -14,4 +14,6 @@ public interface CustomerRepository extends CrudRepository<Customer,Long> {
     public List<Customer> getAllCustomers();
 
     public Customer getCustomersByCustomerContact(Long customerContact);
+
+    public Customer getCustomersByCustomerId(Long customerId);
 }

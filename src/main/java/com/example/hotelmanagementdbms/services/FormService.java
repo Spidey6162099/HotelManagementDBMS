@@ -35,6 +35,7 @@ public class FormService {
             customer.setRoomNum(addCustomerDTO.getRoomNum());
             customer.setEntryDate(addCustomerDTO.getCheckinDate());
             customer.setCustomerContact(addCustomerDTO.getCustomerContact());
+            customer.setExitDate(addCustomerDTO.getCheckoutDate());
 
             customerRepository.save(customer);
             Customer newCustomer=customerRepository.getCustomersByCustomerContact(addCustomerDTO.getCustomerContact());
@@ -62,4 +63,26 @@ public class FormService {
             return false;
         }
     }
+
+    public boolean delete(Long customerId){
+        try {
+            Customer customer = customerRepository.getCustomersByCustomerId(customerId);
+
+            Room room = roomRepository.getRoomByRoomNum(customer.getRoomNum());
+            Payment payment = paymentRepository.getPaymentByCustomerId(customerId);
+
+
+            customerRepository.delete(customer);
+
+            roomRepository.delete(room);
+
+            paymentRepository.delete(payment);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
+
+
 }

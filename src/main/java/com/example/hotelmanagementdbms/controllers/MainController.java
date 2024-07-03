@@ -86,6 +86,14 @@ public class MainController {
         }
 
         @ResponseBody
+        @PostMapping("/Galvanic/customers/delete/{customerid}")
+
+        public ResponseEntity<String> deleteCustomer(@PathVariable Long customerid){
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        @ResponseBody
         @GetMapping("/Galvanic/customers")
         public List<Customer> getAllCustomers(){
             return customerService.getAllCustomers();
